@@ -1,2 +1,13 @@
-#соединить несколько файлов в один с сохранением заголовка
+#соединить несколько файлов в один (с заголовками)
+cat *.csv > newissuesnew.csv
 
+#c заголовком из первого файла
+awk '(NR == 1) || (FNR > 1)' file*.csv > bigfile.csv
+cat file1.csv <(tail +2 file2.csv) <(tail +2 file3.csv) > bigfile.csv
+head -n 1 file1.csv > merged.out && tail -n+2 -q *.csv >> merged.out
+
+#отобрать уникальные строки
+cat users/*.csv | sort -u > users.csv
+Pre-Requisites
+1.	Unique Data
+2.	Every .csv file must have a line break in the end
